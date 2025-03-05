@@ -2,7 +2,7 @@
 =======
 # 🎵 Spotify Streaming Journey
 
-A versatile, LLM-powered dashboard for analyzing and visualizing my Spotify listening history with AI-powered insights.
+An LLM-powered dashboard presenting my Spotify listening history.
 
 ## Features
 
