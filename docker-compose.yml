@@ -1,0 +1,21 @@
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_PATH=/workspace/data/spotify_streaming.duckdb
+      - OpenAI_API_KEY=${LLM_API_KEY}  # Pass LLM_API_KEY
+    volumes:
+      - ./data:/workspace/data
+    depends_on:
+      - frontend #starts streamlit first to avoid a race condition
+
+  frontend:
+    build: .
+    ports:
+      - "8501:8501"
+    command: ["streamlit", "run", "dashboard/streamlit_app.py"]
+    volumes:
+      - ./data:/workspace/data
+      - ./dashboard:/workspace/dashboard

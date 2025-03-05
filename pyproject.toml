@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "spotify-streaming-journey"
+version = "0.1.0"
+description = "A Streamlit dashboard for analyzing your Spotify streaming history"
+requires-python = ">=3.12"
+dependencies = [
+    "streamlit",
+    "altair",
+    "polars",
+    "duckdb",
+    "python-dotenv",
+    "langchain>=0.1.0",
+    "langchain-openai>=0.0.2",
+    "langchain-community>=0.0.10",
+    "langchain-core>=0.1.10",
+    "openai>=1.0.0",
+    "vegafusion-python-embed",
+    "altair-data-server",
+    "pydantic>=2.0.0"
+]
+
+# --- Explicitly define what to include ---
+[tool.hatch.build.targets.wheel]
+include = [
+    "/backend",  # Include the backend directory
+    "/dashboard", # Include the dashboard directory
+    "/tests",    # Include the tests directory
+]
+
+# --- Tell hatch *not* to use default package discovery ---
+only-include = []
+
+# --- Remove setuptools configuration ---
+# [tool.setuptools]  <-- REMOVE THIS ENTIRE SECTION
+# packages = ["backend", "dashboard"]
+
+[project.scripts]
+start-backend = "run:main"
